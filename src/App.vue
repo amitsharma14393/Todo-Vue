@@ -6,6 +6,7 @@
 </template>
 
 <script>
+// for dummy commit.
 export default {
   name: 'app'
 }
