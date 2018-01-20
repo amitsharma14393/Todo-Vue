@@ -6,6 +6,10 @@
 </template>
 
 <script>
+const dummy = () => {
+  console.log('testing dummy commit!');
+}
+dummy();
 // for dummy commit.
 export default {
   name: 'app'
