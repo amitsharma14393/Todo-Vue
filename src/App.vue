@@ -5,17 +5,17 @@
 </template>
 
 <script>
-
 export default {
   name: 'app'
-}
+};
 </script>
 
 <style lang="scss">
- @import './assets/scss/main.scss';
+@import './assets/scss/main.scss';
+
 #app {
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  font-family: $base-font;
+  padding: 16px;
 }
 </style>
