@@ -1,0 +1,13 @@
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  -ms-box-sizing: inherit;
+  box-sizing: inherit;
+}
