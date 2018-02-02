@@ -1,0 +1,31 @@
+// font family
+@font-face {
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  src: url( 'https://fonts.googleapis.com/css?family=Rubik:400,700'), format('woff');
+}
+
+$base-font-family:  'Rubik', Arial, Helvetica, sans-serif;
+
+// font size
+@media screen and ( max-width: 340px ) {
+
+}
+
+@media screen and ( max-width : 340px ) {
+
+}
+$base-font-size: 16px;
+$base-title-size: 18px;
+$base-app-title-size: 22px;
+$add-symbol: 24px;
+
+// font weight
+$light: 200;
+$medium: 400;
+$bold: 600;
+
+// font color
+$base-font-color:  #2c3e50;
+
+
+

@@ -1,8 +1,7 @@
-
-@import './partials/_fonts.scss';
-@import './partials/_colors.scss';
-@import './partials/_utility.scss';
-@import './partials/_mixins.scss';
-@import './partials/_checkbox.scss';
-@import './partials/_animation.scss';
+// import common styles
+@import '../scss/common/fonts';
+@import '../scss/common/mixins';
+@import '../scss/common/variables';
+@import '../scss/common/base';
+@import '../scss/common/utility';
 

@@ -1,0 +1,35 @@
+@mixin clearfix {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+// @mixin rounded-corner( $radius) {
+//   -moz-border-radius: $radius;
+//   -ms-border-radius: $radius;
+//   -webkit-border-radius: $radius;
+//   border-radius: $radius;
+// }
+
+// @mixin clear-both {
+//   clear: both;
+//   content: '';
+//   display: table;
+// }
+
+// @mixin default-input-control {
+//   outline: none;
+//   padding: 16px;
+// }
+
+// @mixin default-button-control {
+//   background-color: $bright-yellow-1;
+//   color: $default-color;
+//   outline: none;
+//   padding: 16px;
+//   text-align: center;
+// }

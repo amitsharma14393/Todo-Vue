@@ -13,9 +13,9 @@ export default {
 <style lang="scss">
 @import './assets/scss/main.scss';
 
+
 #app {
-  color: #2c3e50;
-  font-family: $base-font;
-  padding: 16px;
+  color: $base-font-color;
+  font-family: $base-font-family;
 }
 </style>
