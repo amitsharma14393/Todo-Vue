@@ -58,14 +58,11 @@ export default {
 @import '../assets/scss/common/utility';
 @import '../assets/scss/common/fonts';
 @import '../assets/scss/common/variables';
+@import '../assets/scss/common/mixins';
 
 .app-header {
    background: $light-yellow-2;
-   position:fixed;
-   top:0;
-   left:0;
-   right:0;
-   z-index: 1;
+   @include fix-header;
   .app-title {
     font-size: $base-app-title-size;
     letter-spacing: 1px;
@@ -92,6 +89,7 @@ export default {
   width: 100%;
   padding: 16px;
   font-size: $base-app-title-size;
+  @include fix-header;
 
   .app-back-button {
     cursor: pointer;

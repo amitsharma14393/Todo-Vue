@@ -55,8 +55,10 @@ export default {
 <style lang="scss">
 @import '../assets/scss/common/variables';
 @import '../assets/scss/common/fonts';
+@import '../assets/scss/common/mixins';
 
 .tabs-section {
+  margin-top: 50px;
   .todo-tabs {
     width: 100%;
     .tab-item {

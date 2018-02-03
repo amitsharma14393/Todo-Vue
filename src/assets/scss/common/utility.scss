@@ -35,11 +35,11 @@
 
 /* 3 dots option container */
 .option-symbol {
-    border: 1px solid $base-font-color;
-    border-radius: 50%;
-    width: 6px;
-    height: 6px;
-    margin-bottom:3px;
+  border: 1px solid $base-font-color;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  margin-bottom: 3px;
 }
 
 /* Generic 3 coloumn layout */
@@ -66,4 +66,10 @@
   border: 0;
   width: 100%;
   font-size: $base-font-size;
+}
+
+.active-text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

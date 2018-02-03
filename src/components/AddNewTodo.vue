@@ -92,9 +92,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/partials/_colors.scss';
-@import '../assets/scss/partials/_mixins.scss';
-@import '../assets/scss/partials/_fonts.scss';
+@import '../assets/scss/partials/_colors';
+@import '../assets/scss/partials/_mixins';
+@import '../assets/scss/partials/_fonts';
+@import '../assets/scss/common/variables';
 
 .overlay {
   width: 100%;
@@ -105,6 +106,7 @@ export default {
   bottom: 0;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: $app-overlay-z-index;
 }
 
 .modal-container {
