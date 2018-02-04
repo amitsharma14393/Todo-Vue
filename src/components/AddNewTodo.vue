@@ -1,184 +1,206 @@
 <template>
   <div>
-
-    <div class="overlay"></div>
-
+    <div class="overlay" v-on:click="closeModal"></div>
     <div class="modal-container">
-
-      <!-- MODAL HEADER STARTS -->
-      <div class="modal-header">
-        <div class="modal-title">
-          Add New Todo
-        </div>
-        <div class="modal-close">
-          X
-        </div>
-      </div> <!-- MODAL HEADER ENDS -->
-
-      <!-- MODAL BODY STARTS -->
-      <div class="modal-body">
-        <div class="todo-input-section">
-          <div class="todo-label">Enter Task Name</div>
-          <div class="todo-input-control">
-              <input type="text" class="input-control" placeholder="Task Name..." v-model="Task">
+      <div class="modal">
+        <!-- MODAL HEADER STARTS -->
+        <div class="modal-header clearfix">
+          <div class="modal-title">
+            Add New Todo
           </div>
-        </div>
-        <div class="todo-input-section">
-          <div class="todo-label">Enter Description</div>
-          <div class="todo-input-control">
-            <input type="text" class="input-control" placeholder="Description..." v-model="Description">
-          </div>
-        </div>
-        <div class="todo-input-section">
-          <div class="todo-label">Choose status</div>
-          <div class="todo-input-control">
-            <input type="radio" name="todo-status" value="pending" v-model="status">
-            <input type="radio" name="todo-status" value="completed" v-model="status">
-          </div>
-        </div>
-      </div><!-- MODAL BODY ENDS -->
 
-      <!-- MODAL FOOTER STARTS -->
-      <div class="modal-footer">
-        <div class="add-todo">
-          <button class="btn-add" v-on:click="addNewTodo"> ADD </button>
-        </div>
-        <div class="exit-todo">
-          <button class="btn-exit" v-on:click="exit"> EXIT </button>
-        </div>
-      </div> <!-- MODAL FOOTER ENDS -->
+        </div> <!-- MODAL HEADER ENDS -->
 
+        <!-- MODAL BODY STARTS -->
+        <div class="modal-body">
+          <div class="todo-input-section clearfix">
+            <div class="todo-input-control-block">
+                <div class="todo-input-box">
+                  <input type="text" class="input-control reset-input-control" placeholder="Enter Task Name..." v-model="task">
+                </div>
+            </div>
+          </div>
+          <div class="todo-input-section clearfix">
+            <div class="todo-input-control-block">
+              <div class="todo-input-box">
+                <input type="text" class="input-control reset-input-control" placeholder="Enter Description..." v-model="description">
+              </div>
+            </div>
+          </div>
+          <div class="todo-input-section clearfix">
+            <div class="todo-label">Choose Status</div>
+            <div class="todo-input-control-block">
+              <label class="radio-button-container">
+                Pending
+                <input type="radio" name="todo-status" value="pending" checked="checked" class="native-radio-control" v-model="status">
+                <span class="custom-radio-control"></span>
+              </label>
+              <label class="radio-button-container">
+                Completed
+                <input type="radio" name="todo-status" value="completed" class="native-radio-control" v-model="status">
+                <span class="custom-radio-control"></span>
+              </label>
+            </div>
+          </div>
+        </div><!-- MODAL BODY ENDS -->
+        <!-- MODAL FOOTER STARTS -->
+        <div class="modal-footer clearfix">
+          <div class="add-todo">
+            <button class="btn-add reset-button-control" v-on:click="addNewTodo"> DONE </button>
+          </div>
+          <div class="exit-todo">
+            <button class="btn-exit reset-button-control" v-on:click="exit"> CANCEL </button>
+          </div>
+        </div> <!-- MODAL FOOTER ENDS -->
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { EVENTS } from '../common/constant';
+import { PUBLISH_EVENT } from '../common/eventManager';
 
 export default {
-  props:{
-    type:Object
-  },
-  data(){
+  // props:{
+  //   type:Object
+  // },
+  data() {
     return {
-      task:'',
-      description:'',
-      status:'',
-      createdAt:''
-    }
+      task: '',
+      description: '',
+      status: '',
+      createdAt: ''
+    };
   },
-  methods:{
+  methods: {
     addNewTodo() {
       const todoItem = {
-        task:this.task,
+        task: this.task,
         description: this.description,
         status: this.status,
         createdAt: this.createdAt
-      }
-      this.$emit( EVENTS.ADD_TODO, todoItem);
+      };
+      this.$emit(EVENTS.ADD_TODO, todoItem);
     },
-    exit(){
+    exit() {
       this.task = '';
       this.description = '';
       this.status = '';
       this.createdAt = '';
       // also exit
+    },
+    closeModal() {
+      PUBLISH_EVENT(EVENTS.CLOSE_MODAL);
+
+      PUBLISH_EVENT('test', 'hi');
     }
   },
-  computed:{
-
-  }
+  computed: {}
 };
 </script>
 
 <style lang="scss">
-@import '../assets/scss/partials/_colors';
-@import '../assets/scss/partials/_mixins';
-@import '../assets/scss/partials/_fonts';
+@import '../assets/scss/common/fonts';
+@import '../assets/scss/common/mixins';
+@import '../assets/scss/common/utility';
 @import '../assets/scss/common/variables';
+@import '../assets/scss/common/radiobutton';
 
 .overlay {
   width: 100%;
   height: 100%;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  position: fixed;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: $app-overlay-z-index;
 }
 
 .modal-container {
   width: 100%;
+  position: fixed;
+  padding: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: $app-modal-z-index;
+  .modal {
+    background: #fff;
+    border-radius: 2px;
+    .modal-header {
+      background-color: $light-yellow-2;
+      font-size: $base-font-size;
 
-  .modal-header {
-    background-color: $bright-yellow-1;
-    font-size: $title-size;
+      .modal-title {
+        float: left;
+        width: 80%;
+        padding: 16px;
+        text-align: left;
+        letter-spacing: 0.5px;
+        font-weight:$bold;
+      }
 
-    .modal-title {
-      float: left;
-      width: 80%;
-      padding: 16px;
-      text-align: left;
+      .modal-close {
+        float: right;
+        width: 20%;
+        padding: 16px;
+        text-align: center;
+      }
     }
 
-    .modal-close {
-      float: right;
-      width: 20%;
-      padding: 16px;
-      text-align: center;
-    }
-
-    &:after {
-      @include clear-both;
-    }
-  }
-
-  .modal-body {
-    width: 100%;
-
-    .todo-input-section {
+    .modal-body {
       width: 100%;
-      .todo-label {
-        width: 25%;
-        font-size: $base-size;
-      }
-      .todo-input-control {
-        width: 75%;
-      }
-      &::after {
-        @include clear-both;
+      .todo-input-section {
+        width: 100%;
+        .todo-label {
+          float: left;
+          width: 50%;
+          padding: 0px 16px;
+          font-size: $base-font-size;
+          letter-spacing: 0.5px;
+          font-weight: $bold;
+        }
+        .todo-input-control {
+          float: left;
+          padding: 16px;
+          width: 50%;
+          letter-spacing: 0.5px;
+          font-size: $base-font-size;
+        }
+        .todo-input-control-block {
+          float: left;
+          padding: 16px;
+          letter-spacing: 0.8px;
+          font-size: $base-font-size;
+          width: 100%;
+          .todo-input-box {
+            border-bottom: 1px solid $border-color;
+            width: 100%;
+            padding-bottom: 5px;
+          }
+        }
       }
     }
-  }
 
-  .modal-footer {
-    width: 100%;
-
-    .add-todo {
-      float: left;
-      width: 50%;
-    }
-
-    .exit-todo {
-      float: left;
-      width: 50%;
-    }
-
-    &::after {
-      @include clear-both;
+    .modal-footer {
+      width: 100%;
+      .add-todo {
+        float: left;
+        width: 50%;
+      }
+      .exit-todo {
+        float: left;
+        width: 50%;
+      }
     }
   }
 }
 
 .input-control {
   width: 100%;
-  @include default-input-control;
 }
 
-.btn-add,
-.btn-exit {
-  @include default-button-control;
-}
 </style>

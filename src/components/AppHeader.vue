@@ -33,6 +33,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -81,6 +82,9 @@ export default {
     .app-options-content {
       position: absolute;
       right: 0;
+      .option-symbol {
+          background:$base-font-color;
+        }
     }
   }
 }

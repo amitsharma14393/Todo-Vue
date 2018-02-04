@@ -22,10 +22,14 @@
       </div> -->
     </div>
 
-    <div class="add-new-todo-item" v-on:click="addTodo">
+    <div class="add-new-todo-item" v-on:click="showTodoDialogBox = true">
       <div class="add-symbol">
         +
       </div>
+    </div>
+
+    <div v-show="showTodoDialogBox">
+      <add-new-todo />
     </div>
 
   </div>
@@ -34,21 +38,39 @@
 <script>
 import AppHeader from './AppHeader';
 import TodoItem from './TodoItem';
+import AddNewTodo from './AddNewTodo';
+import { SUBSCRIBE_EVENT, PUBLISH_EVENT } from '../common/eventManager'
+import { EVENTS } from '../common/constant';
 
 export default {
   data() {
     return {
-      todoList: []
+      todoList: [],
+      showTodoDialogBox: false
     };
   },
   components: {
     AppHeader,
-    TodoItem
+    TodoItem,
+    AddNewTodo
   },
   methods: {
-    addTodo() {}
+    addTodo() {
+
+    },
+    closeModal() {
+      //console.log('came to the closeModal handler', closeModal);
+      this.showTodoDialogBox = false;
+    },
+    subscribeEvents() {
+     SUBSCRIBE_EVENT(EVENTS.CLOSE_MODAL, this.closeModal);
+     SUBSCRIBE_EVENT('test', function(data){ console.log('in subscribe:',data);})
+    }
   },
-  computed: {}
+  computed: {},
+  created() {
+    this.subscribeEvents();
+  }
 };
 </script>
 
@@ -101,5 +123,10 @@ export default {
   .add-symbol {
     padding: 16px;
   }
+}
+
+.active-tab {
+  background: $active-tab-color;
+  border-bottom: 3px solid $base-font-color;
 }
 </style>

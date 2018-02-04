@@ -42,7 +42,36 @@
               <div class="todo-title">Something will come</div>
               <div v-bind:class="['todo-desc',(showTextOverflowClass)?'active-text-overflow':'']">He we are planning to have one beautiful description of our beautiful app</div>
               <div class="todo-other-details clearfix">
-                <div class="todo-status">Pending</div>
+                <div class="todo-status">PENDING</div>
+                <div class="todo-created-at">26th Jun 2016</div>
+              </div>
+            </div>
+
+            <div class="right-section">
+              <div class="options-container">
+                <div class="option-symbol"></div>
+                <div class="option-symbol"></div>
+                <div class="option-symbol"></div>
+              </div>
+            </div>
+
+          </div>
+          <!-- before -->
+           <!-- below -->
+          <div class="todo-details clearfix">
+
+            <div class="left-section">
+              <div class="checkbox-container">
+                <input class="native-checkbox" type="checkbox">
+                <div class="checkmark"></div>
+              </div>
+            </div>
+
+            <div class="middle-section" v-on:click="showTextOverflowClass = !showTextOverflowClass">
+              <div class="todo-title">Something will come</div>
+              <div v-bind:class="['todo-desc',(showTextOverflowClass)?'active-text-overflow':'']">He we are planning to have one beautiful description of our beautiful app</div>
+              <div class="todo-other-details clearfix">
+                <div class="todo-status">PENDING</div>
                 <div class="todo-created-at">26th Jun 2016</div>
               </div>
             </div>
@@ -65,7 +94,6 @@
 <script>
 export default {
   components: {
-    //  AddNewTodo
   },
   data() {
     return {
@@ -103,6 +131,7 @@ export default {
       .options-container {
         position: absolute;
         right: 16px;
+
       }
     }
   }
@@ -132,7 +161,7 @@ export default {
       width: 7px;
       height: 17px;
       transform: rotate(45deg);
-      border: 3px solid white;
+      border: 3px solid $checkbox-border-color;
       border-top: 0;
       border-left: 0;
     }
@@ -141,17 +170,20 @@ export default {
 
 .middle-section {
   .todo-title {
-    letter-spacing: 0.7;
+    letter-spacing: 0.7px;
     font-weight: $bold;
-    margin-bottom: 4px;
+    padding-bottom: 8px;
   }
   .todo-desc {
     font-size: 14px;
-    letter-spacing: 0.5px;
-    margin-bottom: 4px;
+    letter-spacing: 0.6px;
+    padding-bottom: 8px;
+    line-height: 18px;
   }
   .todo-other-details {
     font-size: 12px;
+    padding-bottom: 8px;
+    color: $base-font-color;
     .todo-status {
       float: left;
       width: 50%;

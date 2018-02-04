@@ -5,8 +5,14 @@
 </template>
 
 <script>
+import { SUBSCRIBE_EVENT } from './common/eventManager';
 export default {
-  name: 'app'
+  name: 'app',
+  created() {
+    SUBSCRIBE_EVENT('test',function(data){
+      console.log(data);
+    });
+  }
 };
 </script>
 

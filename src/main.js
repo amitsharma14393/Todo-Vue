@@ -11,13 +11,23 @@ import 'vue-awesome/icons/long-arrow-left';
 import 'vue-awesome/icons/arrow-left';
 import Icon from 'vue-awesome/components/Icon';
 
+import { INITIALIZE_EVENT_MANAGER } from './common/eventManager';
+
 Vue.config.productionTip = false
 Vue.component('icon', Icon);
 
 /* eslint-disable no-new */
-new Vue({
-  el: '#app',
+const vueInstance = new Vue({
+  // el: '#app',
   router,
   template: '<App/>',
   components: { App }
 })
+
+INITIALIZE_EVENT_MANAGER( vueInstance );
+
+vueInstance.$mount('#app');
+
+console.log(vueInstance);
+
+
