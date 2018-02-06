@@ -59,7 +59,6 @@ export default {
 
     },
     closeModal() {
-      //console.log('came to the closeModal handler', closeModal);
       this.showTodoDialogBox = false;
     },
     subscribeEvents() {

@@ -8,11 +8,16 @@
       <div class="app-search col-2" v-on:click="selectedSearchOption = !selectedSearchOption">
         <icon name="search"></icon>
       </div>
-      <div class="app-options col-3" v-on:click="showOtherOptions()">
-        <div class="app-options-content">
+      <div class="app-options col-3">
+        <div class="app-options-content" v-on:click.stop="showAppOptions = !showAppOptions">
           <div class="option-symbol"></div>
           <div class="option-symbol"></div>
           <div class="option-symbol"></div>
+        </div>
+        <div class="app-options-dialog" v-show="showAppOptions">
+          <ul>
+            <li v-on:click.stop="clearAll">Clear All</li>
+          </ul>
         </div>
       </div>
     </div> <!-- General App Header ends -->
@@ -33,24 +38,35 @@
 </template>
 
 <script>
+import { EVENTS } from '../common/constant';
+import { SUBSCRIBE_EVENT } from '../common/eventManager';
 
 export default {
   data() {
     return {
       searchInTodoList: '',
-      selectedSearchOption: false
+      selectedSearchOption: false,
+      showAppOptions: false
     };
   },
   methods: {
-    showOtherOptions() {
-
-    },
+    showOtherOptions() {},
     clearSearchText() {
       this.searchInTodoList = '';
+    },
+    closeHeaderDialog() {
+      this.showAppOptions = false;
+    },
+    HandleEvents() {
+      SUBSCRIBE_EVENT(EVENTS.CLOSE_HEADER_DIALOG, this.closeHeaderDialog);
+    },
+    clearAll(){
+      alert('Hey it got clicked!');
     }
   },
-  computed : {
-
+  computed: {},
+  created(){
+    this.HandleEvents();
   }
 };
 </script>
@@ -62,8 +78,8 @@ export default {
 @import '../assets/scss/common/mixins';
 
 .app-header {
-   background: $light-yellow-2;
-   @include fix-header;
+  background: $light-yellow-2;
+  @include fix-header;
   .app-title {
     font-size: $base-app-title-size;
     letter-spacing: 1px;
@@ -83,8 +99,19 @@ export default {
       position: absolute;
       right: 0;
       .option-symbol {
-          background:$base-font-color;
-        }
+        background: $base-font-color;
+      }
+    }
+    .app-options-dialog {
+      position: absolute;
+      background: #fff;
+      padding: 16px;
+      right: 0;
+      z-index: $app-header-z-index;
+      top: -5px;
+      width: 130px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
     }
   }
 }
@@ -100,7 +127,6 @@ export default {
     text-align: left;
   }
 
-
   .app-clear-search-text {
     cursor: pointer;
     text-align: right;
@@ -115,7 +141,7 @@ export default {
     width: 80%;
   }
   .col-3 {
-    float:right;
+    float: right;
     width: 10%;
   }
 }

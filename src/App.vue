@@ -1,17 +1,22 @@
 <template>
-  <div id="app">
+  <div id="app" v-on:click="handleEvents">
     <router-view/>
   </div>
 </template>
 
 <script>
-import { SUBSCRIBE_EVENT } from './common/eventManager';
+import { EVENTS } from './common/constant';
+import { SUBSCRIBE_EVENT, PUBLISH_EVENT } from './common/eventManager';
 export default {
   name: 'app',
   created() {
     SUBSCRIBE_EVENT('test',function(data){
-      console.log(data);
     });
+  },
+  methods:{
+    handleEvents(){
+      PUBLISH_EVENT(EVENTS.CLOSE_HEADER_DIALOG);
+    }
   }
 };
 </script>
